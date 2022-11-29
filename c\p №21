@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    setlocale(0, "");
+
+    int arrINT[7];
+    int choice;
+
+    for (int i = 0; i < 7; i++) {
+        cout << "Инициализация | ячейка: " << i + 1 << ": ";
+        cin >> arrINT[i];
+    }
+    system("cls");
+    cout <<
+        "[+] Настройки массива:\n\n" <<
+        "[1] Сортировка по возрастанию\n" <<
+        "[2] Сортировка по убыванию\n" <<
+        "[3] Перемножить массив\n" <<
+        "[4] Сложить массив\n" <<
+        "[5] Разделить массив\n" <<
+        "[6] Обнулить массив\n" <<
+        "[7] Задать новые значения массиву\n" <<
+        "[+] Ввод: ";
+
+    cin >> choice;
+    system("cls");
+
+    int operation;
+
+    switch (choice)
+    {
+    case 1:
+
+        break;
+    case 2:
+        break;
+    case 3:
+        cout << "Введи число: ";
+        cin >> operation;
+        
+        for (int i = 0; i < 7; i++)
+        {
+            cout << i + 1 << ". " << arrINT[i] << " \x1b[91m*\x1b[0m " << 
+                operation << " \x1b[91m=\x1b[0m " <<
+                arrINT[i] * operation << endl;
+        }
+        break;
+    case 4:
+        cout << "Введи число: ";
+        cin >> operation;
+
+        for (int i = 0; i < 7; i++)
+        {
+            cout << i + 1 << ". " << arrINT[i] << " \x1b[91m+\x1b[0m " <<
+                operation << " \x1b[91m=\x1b[0m " <<
+                arrINT[i] + operation << endl;
+        }
+        break;
+    case 5:
+        cout << "Введи число: ";
+        cin >> operation;
+
+        for (int i = 0; i < 7; i++)
+        {
+            cout << i + 1 << ". " << arrINT[i] << " \x1b[91m/\x1b[0m " <<
+                operation << " \x1b[91m=\x1b[0m " <<
+                arrINT[i] / operation << endl;
+        }
+        break;
+    case 6:
+        arrINT[7] = {0};
+        for (int i = 0; i < 7; i++) {
+            cout << arrINT[i] << endl;
+        }
+        break;
+    case 7:
+    default:
+        cout << "Нет выбора под таким номером";
+        break;
+    }
+
+
+
+
+
+
+
+
+    return 0;
+}
+
