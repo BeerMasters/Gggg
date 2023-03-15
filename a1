@@ -1,0 +1,38 @@
+#include <iostream>
+
+
+using namespace std;
+
+
+namespace header {
+	string A = "123";
+	string B = "345";
+	string C = "567";
+	string D = "789";
+	string E = "000";
+}
+
+
+
+
+////
+
+
+
+
+#include <iostream>
+#include "Header.h"
+
+
+
+
+int main()
+{
+    std::cout << header::A << endl;
+    std::cout << header::B << endl;
+    std::cout << header::C << endl;
+    std::cout << header::D << endl;
+    std::cout << header::E;
+}
+
+
