@@ -14,7 +14,7 @@ int main()
 	cin >> x;
 	cout << "Введите Y = ";
 	cin >> y;
-	system("pause");
+
 	system("cls");
 	x = abs(x);
 	y = abs(y);
@@ -66,7 +66,7 @@ int main()
 		}
 	}
 
-	system("pause");
+
 	system("cls");
 
 	while (true) {
@@ -123,9 +123,9 @@ int main()
 		if (key == 49) {
 			while (true) {
 				cout << "Введите координаты точки \n";
-				cout << "Введите X точки =  ";
+				cout << "Введите x точки =  ";
 				cin >> x1;
-				cout << "Введите Y точки =  ";
+				cout << "Введите y точки =  ";
 				cin >> y1;
 				if (abs(x1) > x or abs(y1) > y) {
 					cout << "\nВы ввели неправильную кординату точки";
@@ -135,7 +135,7 @@ int main()
 					break;
 				}
 			}
-			system("pause");
+	
 			system("cls");
 		}
 		else {
