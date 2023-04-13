@@ -1,0 +1,275 @@
+#include <iostream>
+#include <windows.h>
+#include <conio.h>
+
+int main()
+{
+	int manX1 = 1;
+	int manY1 = 1;
+	int manX2 = 1;
+	int manY2 = 9;
+	int sizeOne;
+	setlocale(0, "");
+	std::cout << "Введите X: ";
+	std::cin >> sizeOne;
+
+	int sizeTwo;
+	std::cout << "Введите Y: ";
+	std::cin >> sizeTwo;
+	system("cls");
+	srand(time(0));
+	int runWallX = 3;
+	int runWallY = 3;
+	int arrayWall[2][2];
+	arrayWall[0][0] = rand() % sizeTwo + 1;
+	while (arrayWall[0][0] > sizeOne - 3 || arrayWall[0][0] == manY1 || arrayWall[0][0] == manY2)
+	{
+		arrayWall[0][0] = rand() % sizeTwo + 1;
+	}
+	arrayWall[0][1] = rand() % sizeOne + 1;
+	while (arrayWall[0][1] > sizeTwo - 2 || arrayWall[0][1] == manX1 || arrayWall[0][1] == manX2)
+	{
+		arrayWall[0][1] = rand() % sizeOne + 1;
+	}
+	arrayWall[1][1] = arrayWall[0][1];
+	arrayWall[1][0] = arrayWall[0][0] + 1;
+	int numberX = rand() % sizeTwo + 1;
+	while (numberX > sizeTwo - 3 || numberX == arrayWall[0][0] || numberX == arrayWall[1][0])
+	{
+		numberX = rand() % sizeTwo + 1;
+	}
+	int numberY = rand() % sizeOne + 1;
+	while (numberY > sizeOne - 2 || numberY == arrayWall[0][1] || numberY == arrayWall[1][1])
+	{
+		numberY = rand() % sizeOne + 1;
+	}
+
+	
+	int score1 = 0;
+	int score2 = 0;
+	while (true)
+	{
+		setlocale(0, " ");
+		std::cout << "Score 1: " << score1 << std::endl;
+		std::cout << "Score 2: " << score2 << std::endl;
+		for (int i = 0; i < sizeTwo; i++)
+		{
+			for (int j = 0; j < sizeOne; j++)
+			{
+				if (i == manX1 && j == manY1)
+				{
+					std::cout << "1 ";
+				}
+				else if (i == manX2 && j == manY2)
+				{
+					std::cout << "2 ";
+				}
+				else if (i == runWallX && j == runWallY)
+				{
+					std::cout << "\x1B[31m# \x1B[0m";
+				}
+				else if (i == numberX && j == numberY)
+				{
+					std::cout << "x ";
+				}
+				else if (i == arrayWall[0][0] && j == arrayWall[0][1] || i == arrayWall[1][0] && j == arrayWall[1][1])
+				{
+					std::cout << "H ";
+				}
+				else if (i == 0 || i == sizeTwo - 1)
+				{
+					std::cout << "_ ";
+				}
+				else if (j == 0 || j == sizeOne - 1)
+				{
+					std::cout << "| ";
+				}
+				else
+				{
+					std::cout << "  ";
+				}
+			}
+			std::cout << std::endl;
+		}
+		char answer;
+		bool a;
+		bool b;
+		bool c;
+		switch (_getch()) // ждёт нажатия на клаву без Enter после этого
+		{
+		case 119:
+		case 66:
+		case 150:
+		case 230:
+			if (manX2 - 1 != arrayWall[1][0] || manY2 != arrayWall[1][1])
+			{
+
+				manX2--;
+				if (manX2 == runWallX && manY2 == runWallY)
+				{
+					runWallX--;
+				}
+			}
+			system("cls");
+
+			break;
+		case 72: //вверх
+			if (manX1 - 1 != arrayWall[1][0] || manY1 != arrayWall[1][1])
+			{
+				
+				manX1--;
+				if (manX1 == runWallX && manY1 == runWallY)
+				{
+					runWallX--;
+				}
+			}
+			system("cls");
+
+			break;
+
+		case 115:
+		case 83:
+		case 155:
+		case 235:
+			if (manX2 + 1 != arrayWall[0][0] || manY2 != arrayWall[0][1])
+			{
+				manX2++;
+				if (manX2 == runWallX && manY2 == runWallY)
+				{
+					runWallX++;
+				}
+			}
+			system("cls");
+			break;
+			
+		case 80: //вниз
+			if (manX1 + 1 != arrayWall[0][0] || manY1 != arrayWall[0][1])
+			{
+				manX1++;
+				if (manX1 == runWallX && manY1 == runWallY)
+				{
+					runWallX++;
+				}
+			}
+			system("cls");
+			break;
+		case 97:
+		case 65:
+		case 148:
+		case 228:
+			if ((manY2 - 1 != arrayWall[0][1] || manX2 != arrayWall[0][0]) && (manY2 - 1 != arrayWall[1][1] || manX2 != arrayWall[1][0]))
+			{
+				manY2--;
+				if (manX2 == runWallX && manY2 == runWallY)
+				{
+					runWallY--;
+				}
+			}
+			system("cls");
+
+			break;
+		case 75: //влево
+			if ((manY1 - 1 != arrayWall[0][1] || manX1 != arrayWall[0][0]) && (manY1 - 1 != arrayWall[1][1] || manX1 != arrayWall[1][0]))
+			{
+				manY1--;
+				if (manX1 == runWallX && manY1 == runWallY)
+				{
+					runWallY--;
+				}
+			}
+			system("cls");
+
+			break;
+		case 100:
+		case 47:
+		case 130:
+		case 162:
+			if ((manY2 + 1 != arrayWall[0][1] || manX2 != arrayWall[0][0]) && (manY2 + 1 != arrayWall[1][1] || manX2 != arrayWall[1][0]))
+			{
+				manY2++;
+				if (manX2 == runWallX && manY2 == runWallY)
+				{
+					runWallY++;
+				}
+			}
+			system("cls");
+			break;
+		case 77: //вправо
+			if ((manY1 + 1 != arrayWall[0][1] || manX1 != arrayWall[0][0]) && (manY1 + 1 != arrayWall[1][1] || manX1 != arrayWall[1][0]))
+			{
+				manY1++;
+				if (manX1 == runWallX && manY1 == runWallY)
+				{
+					runWallY++;
+				}
+			}
+			system("cls");
+			break;
+
+		}
+		if (manX2 == numberX && manY2 == numberY)
+		{
+			score2++;
+			numberX = rand() % sizeTwo + 1;
+			while (numberX > sizeTwo - 3 || numberX == arrayWall[0][0] || numberX == arrayWall[1][0])
+			{
+				numberX = rand() % sizeTwo + 1;
+			}
+			numberY = rand() % sizeOne + 1;
+			while (numberY > sizeOne - 2 || numberY == arrayWall[0][1] || numberY == arrayWall[1][1])
+			{
+				numberY = rand() % sizeOne + 1;
+			}
+		}
+		if (manX1 == numberX && manY1 == numberY)
+		{
+			score1++;
+			numberX = rand() % sizeTwo + 1;
+			while (numberX > sizeTwo - 3 || numberX == arrayWall[0][0] || numberX == arrayWall[1][0])
+			{
+				numberX = rand() % sizeTwo + 1;
+			}
+			numberY = rand() % sizeOne + 1;
+			while (numberY > sizeOne - 2 || numberY == arrayWall[0][1] || numberY == arrayWall[1][1])
+			{
+				numberY = rand() % sizeOne + 1;
+			}
+		}
+
+		if (manY2 > sizeTwo - 1)
+		{
+			manY2 = 0;
+		}
+		if (manY2 < 0)
+		{
+			manY2 = sizeTwo - 1;
+		}
+		if (manX2 > sizeOne - 1)
+		{
+			manX2 = 0;
+		}
+		if (manX2 < 0)
+		{
+			manX2 = sizeOne - 1;
+		}
+
+		if (manY1 > sizeTwo - 1)
+		{
+			manY1 = 0;
+		}
+		if (manY1 < 0)
+		{
+			manY1 = sizeTwo - 1;
+		}
+		if (manX1 > sizeOne - 1)
+		{
+			manX1 = 0;
+		}
+		if (manX1 < 0)
+		{
+			manX1 = sizeOne - 1;
+		}
+	}
+}
+
+
