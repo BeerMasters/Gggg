@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <windows.h>
+
+using namespace std;
+
+
+// Функция для подстветки текста красным цветом
+void setColorRed() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+}
+
+// Функция, которая генерирует случайный текст из массива
+string generateRandomText(string textArray[], int arrayLength) { 
+    srand((unsigned int)time(NULL));
+    int randomIndex = rand() % arrayLength;
+    return textArray[randomIndex];
+}
+int main() {
+    string textArray[] = {
+        "Fall seven times and stand up eight.",
+        "Learning is a treasure that will follow its owner everywhere.",
+        "Everything is good in its season.",
+        "Better early than late.",
+        "A word is enough to the wise."
+    };
+    int arrayLength = sizeof(textArray) / sizeof(textArray[0]);
+
+    // Генерация случайного текста
+    string wordToType = generateRandomText(textArray, arrayLength);
+
+    cout << "Введите данный текст без ошибок:" << endl;
+    cout << wordToType << endl;
+
+}
+// Функция, которая проверяет, правильно ли написана буква в слове
+bool isLetterCorrect(char letter, string word, int index)
+{
+    if (letter == word[index]) {
+        setColorRed();
+        cout << "Поздравляем! Вы написали текст без ошибок!" << endl;
+        return true;
+
+    }
+    else {
+        setColorRed();
+        cout << letter;
+        cout << endl << "Увы, вы написали текст с ошибаками!";
+        return false;
+    }
+
+    // Игровой цикл
+    int index = 0;
+    while (index < wordToType.length()) {
+        char inputLetter;
+        cin >> inputLetter;
+        if (isLetterCorrect(inputLetter, wordToType, index)) {
+            index++;
+        }
+    }
+    return -1;
+}
+
+  
+    
+
+
